@@ -1,0 +1,79 @@
+{% extends 'Main_Admin_template/base_template.html' %}
+{% block page_title %}
+Manage Employee
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Employee Details</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Gender</th>
+                      <th>Profile Pic</th>
+                      <th>Start Year</th>
+                      <th>End Year</th>
+                      <th>Position</th>
+                      <th>Last Login</th>
+                      <th>Date Joined</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for employee in employee %}
+                    <tr>
+                      <td>{{ employee.admin.id }}</td>
+                      <td>{{ employee.admin.first_name }}</td>
+                      <td>{{ employee.admin.last_name }}</td>
+                      <td>{{ employee.admin.username }}</td>
+                      <td>{{ employee.admin.email }}</td>
+                      <td>{{ employee.address }}</td>
+                      <td>{{ employee.gender }}</td>
+                      <td><img src="{{ employee.profile_pic }}" style="width:100px"/></td>
+                      <td>{{ employee.session_start_year }}</td>
+                      <td>{{employee.session_end_year }}</td>
+                      <td>{{ employee.position_id.position_name }}</td>
+                      <td>{{ employee.admin.last_login }}</td>
+                      <td>{{ employee.admin.date_joined }}</td>
+                      <td><a href="{% url 'edit_employee' employee_id=employee.admin.id %}" class="btn btn-success">Edit</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+
